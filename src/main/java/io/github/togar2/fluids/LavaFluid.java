@@ -6,15 +6,15 @@ import net.minestom.server.instance.block.Block;
 import net.minestom.server.item.Material;
 import net.minestom.server.utils.Direction;
 
-public class WaterFluid extends FlowableFluid {
-	
-	public WaterFluid() {
-		super(Block.WATER, Material.WATER_BUCKET);
+public class LavaFluid extends FlowableFluid {
+
+	public LavaFluid() {
+		super(Block.LAVA, Material.LAVA_BUCKET);
 	}
 	
 	@Override
 	protected boolean isInfinite() {
-		return true;
+		return false;
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class WaterFluid extends FlowableFluid {
 	
 	@Override
 	public int getTickRate(Instance instance) {
-		return 5;
+		return 10;
 	}
 	
 	@Override
@@ -47,4 +47,5 @@ public class WaterFluid extends FlowableFluid {
 	protected double getBlastResistance() {
 		return 100;
 	}
+
 }

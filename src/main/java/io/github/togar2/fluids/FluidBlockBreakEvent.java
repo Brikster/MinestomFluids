@@ -8,14 +8,14 @@ import net.minestom.server.instance.Instance;
 import net.minestom.server.instance.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-public class WaterBlockBreakEvent implements InstanceEvent, BlockEvent, CancellableEvent {
+public class FluidBlockBreakEvent implements InstanceEvent, BlockEvent, CancellableEvent {
 	private final Instance instance;
 	private final Point blockPosition;
 	private final Block block;
 	
 	private boolean cancelled;
 	
-	public WaterBlockBreakEvent(@NotNull Instance instance, @NotNull Point blockPosition, @NotNull Block block) {
+	public FluidBlockBreakEvent(@NotNull Instance instance, @NotNull Point blockPosition, @NotNull Block block) {
 		this.instance = instance;
 		this.blockPosition = blockPosition;
 		this.block = block;

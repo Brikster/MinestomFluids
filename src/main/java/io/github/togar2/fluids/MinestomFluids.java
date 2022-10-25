@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MinestomFluids {
 	public static final Fluid WATER = new WaterFluid();
+	public static final Fluid LAVA = new LavaFluid();
 	public static final Fluid EMPTY = new EmptyFluid();
 	
 	private static final Map<Instance, Map<Long, Set<Point>>> UPDATES = new ConcurrentHashMap<>();
@@ -23,7 +24,7 @@ public class MinestomFluids {
 		if (block.compare(Block.WATER)) {
 			return WATER;
 		} else if (block.compare(Block.LAVA)) {
-			return EMPTY;
+			return LAVA;
 		} else {
 			return EMPTY;
 		}
@@ -54,6 +55,7 @@ public class MinestomFluids {
 	
 	public static void init() {
 		MinecraftServer.getBlockManager().registerBlockPlacementRule(new FluidPlacementRule(Block.WATER));
+		MinecraftServer.getBlockManager().registerBlockPlacementRule(new FluidPlacementRule(Block.LAVA));
 	}
 	
 	public static EventNode<Event> events() {
