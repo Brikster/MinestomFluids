@@ -119,12 +119,6 @@ public abstract class FlowableFluid extends Fluid {
 	
 	private boolean receivesFlow(Direction face, Instance instance, Point point,
 	                             Block block, Point fromPoint, Block fromBlock) {
-		FluidReceiveFlowEvent event = new FluidReceiveFlowEvent(instance, point, block);
-		MinecraftServer.getGlobalEventHandler().call(event);
-		if (event.isCancelled()) {
-			return false;
-		}
-
 		// Vanilla seems to check if the adjacent block shapes cover the same square, but this seems to work as well
 		// (Might not work with some special blocks)
 		// If there is anything wrong it is most likely this method :D
@@ -246,6 +240,12 @@ public abstract class FlowableFluid extends Fluid {
 	 * Returns whether the fluid can flow through a specific block
 	 */
 	private boolean canFill(Instance instance, Point point, Block block, Block flowing) {
+		FluidReceiveFlowEvent event = new FluidReceiveFlowEvent(instance, point, block);
+		MinecraftServer.getGlobalEventHandler().call(event);
+		if (event.isCancelled()) {
+			return false;
+		}
+
 		//TODO check waterloggable
 		TagManager tags = MinecraftServer.getTagManager();
 		if (block.compare(Block.LADDER)
