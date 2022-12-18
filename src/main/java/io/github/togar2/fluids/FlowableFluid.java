@@ -286,6 +286,8 @@ public abstract class FlowableFluid extends Fluid {
 	 * Sets the position to the new block, executing {@code onBreakingBlock()} before breaking any non-air block.
 	 */
 	protected void flow(Instance instance, Point point, Block block, Direction direction, Block newBlock) {
+		if (block.equals(newBlock)) return; // Prevent unnecessary updates
+		
 		//TODO waterloggable check
 		boolean cancel = false;
 		if (!block.isAir()) {
@@ -293,7 +295,7 @@ public abstract class FlowableFluid extends Fluid {
 				cancel = true;
 		}
 		
-		if (!cancel) instance.setBlock(point, newBlock);
+		if (!cancel && point.y() >= instance.getDimensionType().getMinY()) instance.setBlock(point, newBlock);
 	}
 	
 	private boolean isMatchingAndStill(Block block) {
