@@ -23,7 +23,7 @@ java {
 }
 
 dependencies {
-    implementation 'com.github.Minestom:Minestom:1a013728fd'
+    implementation 'com.github.Minestom:Minestom:7361bf0825'
 }
 
 publishing {
