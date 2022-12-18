@@ -119,6 +119,12 @@ public abstract class FlowableFluid extends Fluid {
 	
 	private boolean receivesFlow(Direction face, Instance instance, Point point,
 	                             Block block, Point fromPoint, Block fromBlock) {
+		FluidReceiveFlowEvent event = new FluidReceiveFlowEvent(instance, point, block);
+		MinecraftServer.getGlobalEventHandler().call(event);
+		if (event.isCancelled()) {
+			return false;
+		}
+
 		// Vanilla seems to check if the adjacent block shapes cover the same square, but this seems to work as well
 		// (Might not work with some special blocks)
 		// If there is anything wrong it is most likely this method :D
